@@ -5,7 +5,9 @@ import appagency.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.math.BigInteger;
+import java.util.List;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {
@@ -17,4 +19,5 @@ public class ProfileServiceImpl implements ProfileService {
     public User findUserById(BigInteger id) {
         return profileDAO.getUserById(id);
     }
+
 }

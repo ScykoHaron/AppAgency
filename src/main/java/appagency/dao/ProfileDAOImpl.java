@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.math.BigInteger;
+import java.util.List;
 
 @Component
 public class ProfileDAOImpl implements ProfileDAO {
@@ -24,6 +25,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 
     @Override
     public User getUserById(BigInteger id) {
-        return jdbcTemplate.queryForObject(SQL_FIND_USER, new Object[] {id}, new UserMapper());
+       return jdbcTemplate.queryForObject(SQL_FIND_USER, new Object[] {id}, new UserMapper());
+
     }
 }
