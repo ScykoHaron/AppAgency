@@ -1,9 +1,9 @@
 <html>
 <head>
     <title>Title</title>
-    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/styles.css" rel="stylesheet" type="text/css">
 </head>
-
+<body>
 <div class="form-style-2">
     <div class="form-style-2-heading">
         Already in System!
