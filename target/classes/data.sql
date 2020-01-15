@@ -4,7 +4,7 @@ drop table if exists tours;
 
 create table users (
   PRIMARY KEY (user_id),
-  user_id     bigint NOT NULL,
+  user_id     bigint auto_increment NOT NULL,
   first_name  VARCHAR(100) NOT NULL,
   last_name   VARCHAR(100) NOT NULL,
   email       VARCHAR(100) NOT NULL,
@@ -23,7 +23,7 @@ values (3,'Oleg','Leg','OL@mail','68053af2923e00204c3ca7c6a3150cf7',false,to_dat
 
 create table orders (
   PRIMARY KEY (order_id),
-  order_id     bigint NOT NULL,
+  order_id     bigint auto_increment NOT NULL,
   user_id      bigint NOT NULL,
   tour_id      bigint NOT NULL,
   confirmed    boolean not null,
@@ -39,7 +39,7 @@ values (3,2,1,true,to_date('05.01.2019','dd.mm.yyyy'));
 
 create table tours (
   PRIMARY KEY (tour_id),
-  tour_id     bigint NOT NULL,
+  tour_id     bigint auto_increment NOT NULL,
   name         VARCHAR(100) NOT NULL,
   description  VARCHAR(255) NOT NULL,
   location     VARCHAR(100) NOT NULL,
