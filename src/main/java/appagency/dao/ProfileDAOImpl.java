@@ -16,18 +16,17 @@ public class ProfileDAOImpl implements ProfileDAO {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    private final String SQL_FIND_USER = "select * from users where user_id = ?";
-    private final String SQL_INSERT_USER = "insert into users(first_name, last_name, email, password, active, birthday) values(?, ?, ?, ?, ?, ?)";
+    private final String SQL_FIND_USER = "select * from users where email = ?";
+    private final String SQL_INSERT_USER = "insert into users(first_name, last_name, email, password, active, birthday,role) values(?, ?, ?, ?, ?, ?, ?)";
 
 
     @Override
-    public User getUserById(BigInteger id) {
-       return jdbcTemplate.queryForObject(SQL_FIND_USER, new Object[] {id}, new UserMapper());
-
+    public User getUserByLogin(String email) {
+        return jdbcTemplate.queryForObject(SQL_FIND_USER, new Object[] {email}, new UserMapper());
     }
 
     @Override
     public void createUser(UserForm userForm) {
-        jdbcTemplate.update(SQL_INSERT_USER, userForm.getFirstName(), userForm.getLastName(), userForm.getEmail(), userForm.getPassword(), true, LocalDate.parse(userForm.getBirthday()));
+        jdbcTemplate.update(SQL_INSERT_USER, userForm.getFirstName(), userForm.getLastName(), userForm.getEmail(), userForm.getPassword() , true, LocalDate.parse(userForm.getBirthday()), "USER");
     }
 }

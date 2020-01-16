@@ -11,12 +11,13 @@ public class User {
     private String password;
     private boolean active;
     private LocalDate birthday;
+    private String role;
 
     public User(){
 
     }
 
-    public User(BigInteger userId, String firstName, String lastName, String email, String password, boolean active, LocalDate birthday) {
+    public User(BigInteger userId, String firstName, String lastName, String email, String password, boolean active, LocalDate birthday,String role) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,6 +25,7 @@ public class User {
         this.password = password;
         this.active = active;
         this.birthday = birthday;
+        this.role = role;
     }
 
     public BigInteger getUserId() {
@@ -82,6 +84,14 @@ public class User {
         this.birthday = birthday;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -92,6 +102,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", active=" + active +
                 ", birthday=" + birthday +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

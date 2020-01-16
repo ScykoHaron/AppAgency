@@ -10,16 +10,19 @@ create table users (
   email       VARCHAR(100) NOT NULL,
   password    VARCHAR(100) NOT NULL,
   active      boolean not null,
-  birthday    date not null
+  birthday    date not null,
+  role       VARCHAR(25) NOT NULL
 
 );
 
 insert into users
-values (1,'Vasya','Pupkin','VP@mail','202cb962ac59075b964b07152d234b70',true,to_date('24.10.1983','dd.mm.yyyy'));
+values (1,'Vasya','Pupkin','VP@mail','$2y$12$r2a.lvWGDQvaejgdUTf4C.NmD1FuVkPw5CR.Bmiv8K1RTwtVHVUyS',true,to_date('24.10.1983','dd.mm.yyyy'), 'USER');
 insert into users
-values (2,'Petya','Tuzikov','PT@mail','250cf8b51c773f3f8dc8b4be867a9a02',true,to_date('05.03.1992','dd.mm.yyyy'));
+values (2,'Petya','Tuzikov','PT@mail','$2y$12$dHnezQTHf4gX54zDV64WOudr3sx5rGq6GIEka3SychdvNiQzk7szW',true,to_date('05.03.1992','dd.mm.yyyy'), 'USER');
 insert into users
-values (3,'Oleg','Leg','OL@mail','68053af2923e00204c3ca7c6a3150cf7',false,to_date('11.06.1990','dd.mm.yyyy'));
+values (3,'Oleg','Leg','OL@mail','$2y$12$3048Gz5gYwBeEDzVVKNR/.FGBYJ2BM0MDfdfL79WWY6wQ6HHnhUZK',false,to_date('11.06.1990','dd.mm.yyyy'), 'USER');
+insert into users
+values (4,'Admin','Admin','admin','$2y$12$1lZ6rw50dXEfZOlVtBrRPOgihw1YQMiaqm1vB.JEL3OcziYOglLeq',true,to_date('25.04.1990','dd.mm.yyyy'), 'ADMIN');
 
 create table orders (
   PRIMARY KEY (order_id),

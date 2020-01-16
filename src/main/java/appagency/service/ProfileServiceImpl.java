@@ -16,8 +16,7 @@ public class ProfileServiceImpl implements ProfileService {
     ProfileDAOImpl profileDAO;
 
     @Override
-    public User findUserById(BigInteger id) {
-        return profileDAO.getUserById(id);
+    public User findUserByLogin(String login) {
+        return profileDAO.getUserByLogin(login);
     }
-
 }

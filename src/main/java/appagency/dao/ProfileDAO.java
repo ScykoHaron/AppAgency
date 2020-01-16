@@ -7,6 +7,6 @@ import java.math.BigInteger;
 import java.util.List;
 
 public interface ProfileDAO {
-    User getUserById(BigInteger id);
+    User getUserByLogin(String email);
     void createUser(UserForm userForm);
 }
