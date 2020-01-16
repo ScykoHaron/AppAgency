@@ -14,7 +14,7 @@ public class TourDAOImpl implements TourDAO {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    private final String SQL_GET_ALL_TOUR  = "select * from tours order by location";
+    private final String SQL_GET_ALL_TOUR  = "select * from tours where count_limit > 0 order by location";
 
     @Override
     public List<Tour> getTours() {

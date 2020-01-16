@@ -25,10 +25,13 @@
                 <td>${tour.startDate}</td>
                 <td>${tour.endDate}</td>
                 <td>${tour.countLimit}</td>
+                <td>
+                    <input type="submit" value="Забронировать">
+                </td>
             </tr>
         </#list>
     </table>
-
+    <input type="button" onclick="history.back();" value="Назад"/>
 </div>
 </body>
 </html>

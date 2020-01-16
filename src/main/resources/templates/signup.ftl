@@ -28,6 +28,8 @@
         <input type="submit" value="Зарегистрироваться">
     </form>
 
+    <input type="button" onclick="history.back();" value="Назад"/>
+
 </div>
 </body>
 </html>
