@@ -9,13 +9,16 @@
         Добро пожаловать на сайт турагентства "Туда и обратно"
     </div>
 
-    <form method="post" action="/login">
+    <form method="post" action="/start">
     <label for="login">Login:
-        <input class="input-field" type="text"  id="login" name="email">
+        <input class="input-field" type="text"  id="login" name="login">
     </label>
     <label for="password">Password:
         <input class="input-field" type="password" id="password" name="password">
     </label>
+
+        <label for="remember-me">
+            <input type="checkbox" id="remember-me" name="remember-me">Запомнить меня</label>
 
     <input type="submit" value="Войти">
     </form>
