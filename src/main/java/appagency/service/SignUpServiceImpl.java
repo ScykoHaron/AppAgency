@@ -15,4 +15,9 @@ public class SignUpServiceImpl implements SignUpService {
     public void addUser(UserForm userForm) {
         profileDAO.createUser(userForm);
     }
+
+    @Override
+    public Integer check(String email) {
+        return profileDAO.checkEmail(email);
+    }
 }

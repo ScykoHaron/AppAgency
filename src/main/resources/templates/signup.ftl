@@ -4,6 +4,9 @@
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<#if error??>
+    <div class="alert alert-danger" role="alert">Пользователь с таким Email уже есть в базе</div>
+</#if>
 <div class="form-style-2">
     <div class="form-style-2-heading">
         Регистрация

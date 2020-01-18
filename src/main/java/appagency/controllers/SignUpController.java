@@ -7,6 +7,7 @@ import appagency.service.SignUpServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.JsonbHttpMessageConverter;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,19 +21,20 @@ public class SignUpController {
     @Autowired
     private SignUpServiceImpl signUpService;
 
-    @Autowired
-    ProfileServiceImpl profileService;
-
     @GetMapping("/signup")
     public String getSignUpPage(){
         return "signup";
     }
 
     @PostMapping("/signup")
-    public String signUp(UserForm userForm) {
-
-           signUpService.addUser(userForm);
-           return "redirect:/start";
-
+    public String signUp(UserForm userForm, ModelMap model) {
+        if(signUpService.check(userForm.getEmail()) == 0) {
+            signUpService.addUser(userForm);
+            return "redirect:/start";
+        }
+        else {
+            model.addAttribute("error", true);
+            return "signup";
+        }
     }
 }

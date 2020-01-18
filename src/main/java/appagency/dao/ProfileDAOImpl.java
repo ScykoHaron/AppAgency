@@ -21,6 +21,7 @@ public class ProfileDAOImpl implements ProfileDAO {
     PasswordEncoder passwordEncoder;
 
     private final String SQL_FIND_USER = "select * from users where email = ?";
+    private final String SQL_CHECK_EMAIL = "select count(*) from users where email = ?";
     private final String SQL_INSERT_USER = "insert into users(first_name, last_name, email, password, active, birthday,role) values(?, ?, ?, ?, ?, ?, ?)";
 
 
@@ -32,5 +33,10 @@ public class ProfileDAOImpl implements ProfileDAO {
     @Override
     public void createUser(UserForm userForm) {
         jdbcTemplate.update(SQL_INSERT_USER, userForm.getFirstName(), userForm.getLastName(), userForm.getEmail(), passwordEncoder.encode(userForm.getPassword())  , true, LocalDate.parse(userForm.getBirthday()), "ROLE_USER");
+    }
+
+    @Override
+    public Integer checkEmail(String email) {
+        return jdbcTemplate.queryForObject(SQL_CHECK_EMAIL, Integer.class, email);
     }
 }

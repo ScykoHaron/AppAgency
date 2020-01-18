@@ -9,4 +9,5 @@ import java.util.List;
 public interface ProfileDAO {
     User getUserByLogin(String email);
     void createUser(UserForm userForm);
+    Integer checkEmail(String email);
 }
