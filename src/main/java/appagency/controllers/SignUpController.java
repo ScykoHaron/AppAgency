@@ -2,6 +2,7 @@ package appagency.controllers;
 
 import appagency.form.UserForm;
 import appagency.model.User;
+import appagency.service.ProfileServiceImpl;
 import appagency.service.SignUpServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.JsonbHttpMessageConverter;
@@ -11,11 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Optional;
+
 @Controller
 public class SignUpController {
 
     @Autowired
     private SignUpServiceImpl signUpService;
+
+    @Autowired
+    ProfileServiceImpl profileService;
 
     @GetMapping("/signup")
     public String getSignUpPage(){
@@ -24,7 +30,9 @@ public class SignUpController {
 
     @PostMapping("/signup")
     public String signUp(UserForm userForm) {
-        signUpService.addUser(userForm);
-        return "redirect:/start";
+
+           signUpService.addUser(userForm);
+           return "redirect:/start";
+
     }
 }
