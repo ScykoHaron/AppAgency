@@ -30,11 +30,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.headers().frameOptions().disable();
-        http.authorizeRequests().antMatchers("/start","/signup","/tours").permitAll();
+        http.authorizeRequests().antMatchers("/start","/signup","/tours","/profile").permitAll();
         http.authorizeRequests().and().formLogin()
                 .usernameParameter("login")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/tours")
+                .defaultSuccessUrl("/profile")
                 .loginPage("/start")
                 .and()
                 .rememberMe()
