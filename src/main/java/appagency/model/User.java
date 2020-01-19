@@ -9,7 +9,7 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    private boolean active;
+    private Boolean active;
     private LocalDate birthday;
     private String role;
 
@@ -17,7 +17,7 @@ public class User {
 
     }
 
-    public User(BigInteger userId, String firstName, String lastName, String email, String password, boolean active, LocalDate birthday,String role) {
+    public User(BigInteger userId, String firstName, String lastName, String email, String password, Boolean active, LocalDate birthday,String role) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -68,11 +68,11 @@ public class User {
         this.password = password;
     }
 
-    public boolean isActive() {
+    public Boolean isActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         this.active = active;
     }
 

@@ -2,6 +2,7 @@ package appagency.service;
 
 import appagency.dao.ProfileDAOImpl;
 import appagency.form.UserForm;
+import appagency.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class SignUpServiceImpl implements SignUpService {
     }
 
     @Override
-    public Integer check(String email) {
-        return profileDAO.checkEmail(email);
+    public User getUserByLogin(String login) {
+        return profileDAO.getUserByLogin(login);
     }
 }

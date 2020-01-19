@@ -3,11 +3,7 @@ package appagency.dao;
 import appagency.form.UserForm;
 import appagency.model.User;
 
-import java.math.BigInteger;
-import java.util.List;
-
 public interface ProfileDAO {
-    User getUserByLogin(String email);
+    User getUserByLogin(String login);
     void createUser(UserForm userForm);
-    Integer checkEmail(String email);
 }

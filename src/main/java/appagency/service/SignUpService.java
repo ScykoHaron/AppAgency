@@ -1,8 +1,9 @@
 package appagency.service;
 
 import appagency.form.UserForm;
+import appagency.model.User;
 
 public interface SignUpService {
     void addUser(UserForm userForm);
-    Integer check(String email);
+    User getUserByLogin(String login);
 }
