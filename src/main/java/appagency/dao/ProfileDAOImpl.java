@@ -22,7 +22,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 
     private final String SQL_FIND_USER = "select * from users where email = ?";
     private final String SQL_INSERT_USER = "insert into users(first_name, last_name, email, password, active, birthday,role) values(?, ?, ?, ?, ?, ?, ?)";
-
+    private final String SQL_UPDATE_USER = "update users set first_name = ?, last_name = ?, email = ?, password = ?, active = ?, birthday = ?, role = ? where email = ?";
 
     @Override
     public User getUserByLogin(String login) {
@@ -38,4 +38,8 @@ public class ProfileDAOImpl implements ProfileDAO {
         jdbcTemplate.update(SQL_INSERT_USER, userForm.getFirstName(), userForm.getLastName(), userForm.getEmail(), passwordEncoder.encode(userForm.getPassword())  , true, LocalDate.parse(userForm.getBirthday()), "ROLE_USER");
     }
 
+    @Override
+    public void updateUser(UserForm userForm) {
+        jdbcTemplate.update(SQL_UPDATE_USER,userForm.getFirstName(), userForm.getLastName(), userForm.getEmail(), passwordEncoder.encode(userForm.getPassword())  , true, LocalDate.parse(userForm.getBirthday()), "ROLE_USER",userForm.getEmail());
+    }
 }

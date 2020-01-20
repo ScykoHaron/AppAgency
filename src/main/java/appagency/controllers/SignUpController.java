@@ -26,8 +26,14 @@ public class SignUpController {
             return "redirect:/start";
         }
         else {
-            model.addAttribute("error", true);
-            return "signup";
+            if(signUpService.getUserByLogin(userForm.getEmail()).isActive()) {
+                model.addAttribute("error", true);
+                return "signup";
+            }
+            else {
+                signUpService.updateUser(userForm);
+                return "redirect:/start";
+            }
         }
     }
 }

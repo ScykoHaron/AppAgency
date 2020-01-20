@@ -6,4 +6,5 @@ import appagency.model.User;
 public interface ProfileDAO {
     User getUserByLogin(String login);
     void createUser(UserForm userForm);
+    void updateUser(UserForm userForm);
 }

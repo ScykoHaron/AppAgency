@@ -21,4 +21,9 @@ public class SignUpServiceImpl implements SignUpService {
     public User getUserByLogin(String login) {
         return profileDAO.getUserByLogin(login);
     }
+
+    @Override
+    public void updateUser(UserForm userForm) {
+        profileDAO.updateUser(userForm);
+    }
 }
