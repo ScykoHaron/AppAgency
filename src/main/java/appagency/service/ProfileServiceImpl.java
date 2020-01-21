@@ -16,7 +16,7 @@ public class ProfileServiceImpl implements ProfileService {
     ProfileDAOImpl profileDAO;
 
     @Override
-    public User findUserByLogin(String login) {
-        return profileDAO.getUserByLogin(login);
+    public void deleteUser(String login) {
+        profileDAO.deleteUser(login);
     }
 }

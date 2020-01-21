@@ -6,5 +6,5 @@ import java.math.BigInteger;
 import java.util.List;
 
 public interface ProfileService {
-   User findUserByLogin(String login);
+    void deleteUser(String login);
 }
