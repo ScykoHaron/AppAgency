@@ -20,9 +20,6 @@
         <input class="input-field" type="password" id="password" name="password">
     </label>
 
-        <label for="remember-me">
-            <input type="checkbox" id="remember-me" name="remember-me">Запомнить меня</label>
-
     <input type="submit" value="Войти">
     </form>
 

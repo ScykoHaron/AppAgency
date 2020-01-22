@@ -17,12 +17,12 @@ public class OrdersController {
 
     @GetMapping("/orders")
     public String getOrdersPage(ModelMap model, Authentication authentication) {
-        if(authentication == null){
+        if (authentication == null) {
             return "redirect:/start";
         }
         UserDetailsImpl details = (UserDetailsImpl) authentication.getPrincipal();
         User user = details.getUser();
-        model.addAttribute("userOrders",orderService.getOrder(user.getUserId()));
+        model.addAttribute("userOrders", orderService.getOrder(user.getUserId()));
         return "orders";
     }
 

@@ -35,9 +35,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("login")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/profile")
-                .loginPage("/start")
-                .and()
-                .rememberMe()
-                .rememberMeParameter("remember-me");
+                .loginPage("/start");
     }
 }
