@@ -12,9 +12,11 @@ public class OrderMapper implements RowMapper<Order> {
     public Order mapRow(ResultSet resultSet, int i) throws SQLException {
         Order order = new Order();
         order.setOrderId(BigInteger.valueOf(resultSet.getLong("order_id")));
-        order.setUserId(BigInteger.valueOf(resultSet.getLong("user_id")));
-        order.setTourId(BigInteger.valueOf(resultSet.getLong("tour_id")));
-        order.setConfirmed(resultSet.getBoolean("confirmed"));
+        order.setName(resultSet.getString("name"));
+        order.setDescription(resultSet.getString("description"));
+        order.setLocation(resultSet.getString("location"));
+        order.setStartDate(LocalDate.parse(resultSet.getString("start_date")));
+        order.setEndDate(LocalDate.parse(resultSet.getString("end_date")));
         order.setTimeKey(LocalDate.parse(resultSet.getString("time_key")));
         return order;
     }
