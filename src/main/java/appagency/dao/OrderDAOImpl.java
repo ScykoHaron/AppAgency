@@ -16,9 +16,15 @@ public class OrderDAOImpl implements OrderDAO {
     JdbcTemplate jdbcTemplate;
 
     private final String SQL_GET_USER_ORDER  = "SELECT q.order_id, NAME ,DESCRIPTION ,LOCATION ,START_DATE ,END_DATE ,time_key FROM ORDERS q join tours w on q.tour_id = w.tour_id and q.user_id = ? order by order_id";
+    private final String SQL_DELETE_ORDER = "delete from orders where order_id = ?";
 
     @Override
     public List<Order> getOrders(BigInteger id) {
         return jdbcTemplate.query(SQL_GET_USER_ORDER, new OrderMapper(), id);
+    }
+
+    @Override
+    public void deleteOrder(BigInteger id) {
+        jdbcTemplate.update(SQL_DELETE_ORDER,id);
     }
 }

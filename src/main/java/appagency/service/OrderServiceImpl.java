@@ -18,4 +18,9 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getOrder(BigInteger id) {
         return orderDAO.getOrders(id);
     }
+
+    @Override
+    public void delOrder(BigInteger id) {
+        orderDAO.deleteOrder(id);
+    }
 }

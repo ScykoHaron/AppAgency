@@ -28,12 +28,16 @@
                 <td>${order.endDate}</td>
                 <td>${order.timeKey}</td>
                 <td>
-                    <input type="submit" value="Отменить">
+                    <form method="post" action="/orders">
+                        <input type="hidden" name="order" value="${order.orderId}">
+                        <input type="submit" value="Отменить">
+                    </form>
+
                 </td>
             </tr>
         </#list>
     </table>
-    <input type="button" onclick="history.back();" value="Назад"/>
+    <input type="button" onclick="location.href = '/profile';" value="Назад"/>
 </div>
 </body>
 </html>

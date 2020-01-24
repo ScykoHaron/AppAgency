@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface OrderService {
     List<Order> getOrder(BigInteger id);
+    void delOrder(BigInteger id);
 }
