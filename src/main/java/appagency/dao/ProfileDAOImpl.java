@@ -52,15 +52,13 @@ public class ProfileDAOImpl implements ProfileDAO {
     @Override
     public void editUser(String field, String value, String login) {
         String sql = "update users set " + field + " = ? where email = '" + login + "'";
-        if(field.equals("birthday")){
-            jdbcTemplate.update(sql,LocalDate.parse(value));
+        if (field.equals("birthday")) {
+            jdbcTemplate.update(sql, LocalDate.parse(value));
+        } else if (field.equals("password")) {
+            jdbcTemplate.update(sql, passwordEncoder.encode(value));
+        } else {
+            jdbcTemplate.update(sql, value);
         }
-        else {
-            if (field.equals("password")) {
-                jdbcTemplate.update(sql, passwordEncoder.encode(value));
-            } else {
-                jdbcTemplate.update(sql, value);
-            }
-        }
+
     }
 }
