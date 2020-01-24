@@ -19,4 +19,9 @@ public class ProfileServiceImpl implements ProfileService {
     public void deleteUser(String login) {
         profileDAO.deleteUser(login);
     }
+
+    @Override
+    public void editUser(String field, String value, String login) {
+        profileDAO.editUser(field, value, login);
+    }
 }

@@ -14,6 +14,11 @@
     <form method="get" action="/tours">
         <input type="submit" value="Посмотреть туры">
     </form>
+
+    <form method="get" action="/edit">
+        <input type="submit" value="Редактировать аккаунт">
+    </form>
+
     <form method="post" action="/profile">
         <input type="submit" value="Удалить аккаунт">
     </form>

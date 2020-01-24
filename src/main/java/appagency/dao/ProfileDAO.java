@@ -8,4 +8,5 @@ public interface ProfileDAO {
     void createUser(UserForm userForm);
     void updateUser(UserForm userForm);
     void deleteUser(String login);
+    void editUser(String field, String value,String login);
 }

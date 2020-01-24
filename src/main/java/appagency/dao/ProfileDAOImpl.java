@@ -48,4 +48,19 @@ public class ProfileDAOImpl implements ProfileDAO {
     public void deleteUser(String login) {
         jdbcTemplate.update(SQL_DELETE_USER,login);
     }
+
+    @Override
+    public void editUser(String field, String value, String login) {
+        String sql = "update users set " + field + " = ? where email = '" + login + "'";
+        if(field.equals("birthday")){
+            jdbcTemplate.update(sql,LocalDate.parse(value));
+        }
+        else {
+            if (field.equals("password")) {
+                jdbcTemplate.update(sql, passwordEncoder.encode(value));
+            } else {
+                jdbcTemplate.update(sql, value);
+            }
+        }
+    }
 }
