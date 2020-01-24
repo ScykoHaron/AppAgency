@@ -4,6 +4,9 @@
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<#if error??>
+    <div class="alert alert-danger" role="alert">Нельзя отменить тур после его начала</div>
+</#if>
 <div class="form-style-2">
     <div class="form-style-2-heading">
         Мои заказы
@@ -30,6 +33,7 @@
                 <td>
                     <form method="post" action="/orders">
                         <input type="hidden" name="order" value="${order.orderId}">
+                        <input type="hidden" name="startdate" value="${order.startDate}">
                         <input type="submit" value="Отменить">
                     </form>
 

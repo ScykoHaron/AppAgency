@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.math.BigInteger;
+import java.time.LocalDate;
 
 @Controller
 public class OrdersController {
@@ -20,9 +22,12 @@ public class OrdersController {
     OrderServiceImpl orderService;
 
     @GetMapping("/orders")
-    public String getOrdersPage(ModelMap model, Authentication authentication) {
+    public String getOrdersPage(ModelMap model, Authentication authentication, HttpServletRequest request) {
         if (authentication == null) {
             return "redirect:/start";
+        }
+        if (request.getParameterMap().containsKey("error")) {
+            model.addAttribute("error", true);
         }
         UserDetailsImpl details = (UserDetailsImpl) authentication.getPrincipal();
         User user = details.getUser();
@@ -31,9 +36,14 @@ public class OrdersController {
     }
 
     @PostMapping("/orders")
-    public String delOrder(@RequestParam(name = "order") BigInteger id) {
-        orderService.delOrder(id);
-        return "redirect:/orders";
+    public String delOrder(@RequestParam(name = "order") BigInteger id, @RequestParam(name = "startdate") String startDate) {
+        LocalDate date = LocalDate.now();
+        if (date.isEqual(LocalDate.parse(startDate)) || date.isAfter(LocalDate.parse(startDate))) {
+            return "redirect:/orders?error";
+        } else {
+            orderService.delOrder(id);
+            return "redirect:/orders";
+        }
     }
 
 }
