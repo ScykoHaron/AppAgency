@@ -52,8 +52,8 @@ create table tours (
 );
 
 insert into tours
-values (1,'Tokyo','Gorod','Japan',to_date('11.01.2020','dd.mm.yyyy'),to_date('20.01.2020','dd.mm.yyyy'),3);
+values (1,'Tokyo','Gorod','Japan',to_date('11.01.2020','dd.mm.yyyy'),to_date('20.01.2020','dd.mm.yyyy'),1);
 insert into tours
-values (2,'Paris','Gorod','France',to_date('25.02.2020','dd.mm.yyyy'),to_date('05.03.2020','dd.mm.yyyy'),1);
+values (2,'Paris','Gorod','France',to_date('25.02.2021','dd.mm.yyyy'),to_date('05.03.2021','dd.mm.yyyy'),3);
 insert into tours
-values (3,'London','Gorod','England',to_date('09.01.2020','dd.mm.yyyy'),to_date('20.01.2020','dd.mm.yyyy'),1);
+values (3,'London','Gorod','England',to_date('09.01.2021','dd.mm.yyyy'),to_date('20.01.2021','dd.mm.yyyy'),1);

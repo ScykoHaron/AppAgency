@@ -23,4 +23,9 @@ public class OrderServiceImpl implements OrderService {
     public void delOrder(BigInteger id) {
         orderDAO.deleteOrder(id);
     }
+
+    @Override
+    public void addOrder(BigInteger userId, BigInteger tourId) {
+        orderDAO.addOrder(userId, tourId);
+    }
 }

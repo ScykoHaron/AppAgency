@@ -1,5 +1,8 @@
 package appagency.controllers;
 
+import appagency.model.User;
+import appagency.security.details.UserDetailsImpl;
+import appagency.service.OrderServiceImpl;
 import appagency.service.TourServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,6 +20,9 @@ public class ToursController {
     @Autowired
     TourServiceImpl tourService;
 
+    @Autowired
+    OrderServiceImpl orderService;
+
     @GetMapping("/tours")
     public String getToursPage(ModelMap model){
         model.addAttribute("allTours",tourService.getTours());
@@ -28,7 +34,10 @@ public class ToursController {
         if (authentication == null) {
             return "redirect:/start";
         }
+        UserDetailsImpl details = (UserDetailsImpl) authentication.getPrincipal();
+        User user = details.getUser();
         tourService.decreaseCount(tourId);
+        orderService.addOrder(user.getUserId(),tourId);
         return "redirect:/tours";
     }
 }
