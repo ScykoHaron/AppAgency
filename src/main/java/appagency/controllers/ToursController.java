@@ -2,9 +2,14 @@ package appagency.controllers;
 
 import appagency.service.TourServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.math.BigInteger;
 
 @Controller
 public class ToursController {
@@ -16,5 +21,14 @@ public class ToursController {
     public String getToursPage(ModelMap model){
         model.addAttribute("allTours",tourService.getTours());
         return "tours";
+    }
+
+    @PostMapping("/tours")
+    public String bookingTour(@RequestParam(name = "tour") BigInteger tourId, Authentication authentication){
+        if (authentication == null) {
+            return "redirect:/start";
+        }
+        tourService.decreaseCount(tourId);
+        return "redirect:/tours";
     }
 }

@@ -23,4 +23,9 @@ public class TourServiceImpl implements TourService {
     public void increaseCount(BigInteger id) {
         tourDAO.increaseCount(id);
     }
+
+    @Override
+    public void decreaseCount(BigInteger id) {
+        tourDAO.decreaseCount(id);
+    }
 }

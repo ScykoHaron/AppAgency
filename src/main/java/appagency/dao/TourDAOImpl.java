@@ -15,8 +15,9 @@ public class TourDAOImpl implements TourDAO {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    private final String SQL_GET_ALL_TOUR  = "select * from tours where count_limit > 0 order by location";
+    private final String SQL_GET_ALL_TOUR  = "select * from tours where count_limit > 0 and start_date > sysdate order by location";
     private final String SQL_INCREASE_COUNT_TOUR  = "update tours set count_limit = count_limit + 1 where tour_id = ?";
+    private final String SQL_DECREASE_COUNT_TOUR  = "update tours set count_limit = count_limit - 1 where tour_id = ?";
 
     @Override
     public List<Tour> getTours() {
@@ -26,5 +27,10 @@ public class TourDAOImpl implements TourDAO {
     @Override
     public void increaseCount(BigInteger id) {
         jdbcTemplate.update(SQL_INCREASE_COUNT_TOUR,id);
+    }
+
+    @Override
+    public void decreaseCount(BigInteger id) {
+        jdbcTemplate.update(SQL_DECREASE_COUNT_TOUR, id);
     }
 }

@@ -26,12 +26,15 @@
                 <td>${tour.endDate}</td>
                 <td>${tour.countLimit}</td>
                 <td>
-                    <input type="submit" value="Забронировать">
+                    <form method="post" action="/tours">
+                        <input type="hidden" name="tour" value="${tour.tourId}">
+                        <input type="submit" value="Забронировать">
+                    </form>
                 </td>
             </tr>
         </#list>
     </table>
-    <input type="button" onclick="history.back();" value="Назад"/>
+    <input type="button" onclick="location.href = '/profile';" value="Назад"/>
 </div>
 </body>
 </html>

@@ -8,4 +8,5 @@ import java.util.List;
 public interface TourDAO {
     List<Tour> getTours();
     void increaseCount(BigInteger id);
+    void decreaseCount(BigInteger id);
 }
