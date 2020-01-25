@@ -1,5 +1,6 @@
 package appagency.service;
 
+import appagency.dao.OrderDAO;
 import appagency.dao.OrderDAOImpl;
 import appagency.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
-    OrderDAOImpl orderDAO;
+    OrderDAO orderDAO;
 
     @Override
     public List<Order> getOrder(BigInteger id) {

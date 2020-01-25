@@ -2,7 +2,9 @@ package appagency.controllers;
 
 import appagency.model.User;
 import appagency.security.details.UserDetailsImpl;
+import appagency.service.OrderService;
 import appagency.service.OrderServiceImpl;
+import appagency.service.TourService;
 import appagency.service.TourServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -20,10 +22,10 @@ import java.time.LocalDate;
 public class OrdersController {
 
     @Autowired
-    OrderServiceImpl orderService;
+    OrderService orderService;
 
     @Autowired
-    TourServiceImpl tourService;
+    TourService tourService;
 
     @GetMapping("/orders")
     public String getOrdersPage(ModelMap model, Authentication authentication, HttpServletRequest request) {
