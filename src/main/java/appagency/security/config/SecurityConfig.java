@@ -30,11 +30,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.headers().frameOptions().disable();
-        http.authorizeRequests().antMatchers("/start","/signup","/tours","/profile","/edit","/edit/firstname").permitAll();
+        http.authorizeRequests()
+                .antMatchers("/profile","/edit").hasAuthority("ROLE_USER")
+                .antMatchers("/start","/signup","/tours").permitAll();
         http.authorizeRequests().and().formLogin()
                 .usernameParameter("login")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/profile")
-                .loginPage("/start");
+                .loginPage("/start")
+        .and()
+        .exceptionHandling().accessDeniedPage("/accessDenied");
     }
 }
