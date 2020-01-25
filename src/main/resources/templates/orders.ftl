@@ -33,6 +33,7 @@
                 <td>
                     <form method="post" action="/orders">
                         <input type="hidden" name="order" value="${order.orderId}">
+                        <input type="hidden" name="tour" value="${order.tourId}">
                         <input type="hidden" name="startdate" value="${order.startDate}">
                         <input type="submit" value="Отменить">
                     </form>

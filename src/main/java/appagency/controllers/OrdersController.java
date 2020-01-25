@@ -3,6 +3,7 @@ package appagency.controllers;
 import appagency.model.User;
 import appagency.security.details.UserDetailsImpl;
 import appagency.service.OrderServiceImpl;
+import appagency.service.TourServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,9 @@ public class OrdersController {
     @Autowired
     OrderServiceImpl orderService;
 
+    @Autowired
+    TourServiceImpl tourService;
+
     @GetMapping("/orders")
     public String getOrdersPage(ModelMap model, Authentication authentication, HttpServletRequest request) {
         if (authentication == null) {
@@ -36,12 +40,13 @@ public class OrdersController {
     }
 
     @PostMapping("/orders")
-    public String delOrder(@RequestParam(name = "order") BigInteger id, @RequestParam(name = "startdate") String startDate) {
+    public String delOrder(@RequestParam(name = "order") BigInteger id,@RequestParam(name = "tour") BigInteger tourId, @RequestParam(name = "startdate") String startDate) {
         LocalDate date = LocalDate.now();
         if (date.isEqual(LocalDate.parse(startDate)) || date.isAfter(LocalDate.parse(startDate))) {
             return "redirect:/orders?error";
         } else {
             orderService.delOrder(id);
+            tourService.increaseCount(tourId);
             return "redirect:/orders";
         }
     }

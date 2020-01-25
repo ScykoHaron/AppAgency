@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 public class Order {
     private BigInteger orderId;
+    private BigInteger tourId;
     private String name;
     private String description;
     private String location;
@@ -16,8 +17,9 @@ public class Order {
 
     }
 
-    public Order(BigInteger orderId, String name, String description, String location, LocalDate startDate, LocalDate endDate, LocalDate timeKey) {
+    public Order(BigInteger orderId, BigInteger tourId, String name, String description, String location, LocalDate startDate, LocalDate endDate, LocalDate timeKey) {
         this.orderId = orderId;
+        this.tourId = tourId;
         this.name = name;
         this.description = description;
         this.location = location;
@@ -32,6 +34,14 @@ public class Order {
 
     public void setOrderId(BigInteger orderId) {
         this.orderId = orderId;
+    }
+
+    public BigInteger getTourId() {
+        return tourId;
+    }
+
+    public void setTourId(BigInteger tourId) {
+        this.tourId = tourId;
     }
 
     public String getName() {
