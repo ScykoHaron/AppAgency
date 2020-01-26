@@ -14,11 +14,16 @@ import java.util.List;
 @Component
 public class ProfileDAOImpl implements ProfileDAO {
 
-    @Autowired
     JdbcTemplate jdbcTemplate;
+    PasswordEncoder passwordEncoder;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    public ProfileDAOImpl(JdbcTemplate jdbcTemplate, PasswordEncoder passwordEncoder) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+
 
     private final String SQL_FIND_USER = "select * from users where email = ?";
     private final String SQL_INSERT_USER = "insert into users(first_name, last_name, email, password, active, birthday,role) values(?, ?, ?, ?, ?, ?, ?)";
