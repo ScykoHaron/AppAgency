@@ -15,13 +15,13 @@ public class OrderServiceImpl implements OrderService {
     OrderDao orderDao;
 
     @Override
-    public List<Order> getOrder(BigInteger id) {
-        return orderDao.getOrders(id);
+    public List<Order> getOrder(BigInteger userId) {
+        return orderDao.getOrders(userId);
     }
 
     @Override
-    public void delOrder(BigInteger id) {
-        orderDao.deleteOrder(id);
+    public void delOrder(BigInteger orderId) {
+        orderDao.deleteOrder(orderId);
     }
 
     @Override

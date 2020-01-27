@@ -20,18 +20,18 @@ public class OrderDaoImpl implements OrderDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    private final String SQL_GET_USER_ORDER = "SELECT q.order_id, w.tour_id, NAME ,DESCRIPTION ,LOCATION ,START_DATE ,END_DATE ,time_key FROM ORDERS q join tours w on q.tour_id = w.tour_id and q.user_id = ? order by order_id";
+    private final String SQL_GET_USER_ORDER = "SELECT q.order_id, w.tour_id, NAME , DESCRIPTION , LOCATION , START_DATE ,END_DATE ,time_key FROM ORDERS q join tours w on q.tour_id = w.tour_id and q.user_id = ? order by order_id";
     private final String SQL_DELETE_ORDER = "delete from orders where order_id = ?";
     private final String SQL_ADD_ORDER = "insert into orders(user_id, tour_id, confirmed, time_key) values(?, ?, ?, ?)";
 
     @Override
-    public List<Order> getOrders(BigInteger id) {
-        return jdbcTemplate.query(SQL_GET_USER_ORDER, new OrderMapper(), id);
+    public List<Order> getOrders(BigInteger userId) {
+        return jdbcTemplate.query(SQL_GET_USER_ORDER, new OrderMapper(), userId);
     }
 
     @Override
-    public void deleteOrder(BigInteger id) {
-        jdbcTemplate.update(SQL_DELETE_ORDER, id);
+    public void deleteOrder(BigInteger orderId) {
+        jdbcTemplate.update(SQL_DELETE_ORDER, orderId);
     }
 
     @Override

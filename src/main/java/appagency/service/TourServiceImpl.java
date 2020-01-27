@@ -20,12 +20,12 @@ public class TourServiceImpl implements TourService {
     }
 
     @Override
-    public void increaseCount(BigInteger id) {
-        tourDao.increaseCount(id);
+    public void increaseCount(BigInteger tourId) {
+        tourDao.increaseCount(tourId);
     }
 
     @Override
-    public void decreaseCount(BigInteger id) {
-        tourDao.decreaseCount(id);
+    public void decreaseCount(BigInteger tourId) {
+        tourDao.decreaseCount(tourId);
     }
 }

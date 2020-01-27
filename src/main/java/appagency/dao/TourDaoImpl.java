@@ -29,12 +29,12 @@ public class TourDaoImpl implements TourDao {
     }
 
     @Override
-    public void increaseCount(BigInteger id) {
-        jdbcTemplate.update(SQL_INCREASE_COUNT_TOUR, id);
+    public void increaseCount(BigInteger tourId) {
+        jdbcTemplate.update(SQL_INCREASE_COUNT_TOUR, tourId);
     }
 
     @Override
-    public void decreaseCount(BigInteger id) {
-        jdbcTemplate.update(SQL_DECREASE_COUNT_TOUR, id);
+    public void decreaseCount(BigInteger tourId) {
+        jdbcTemplate.update(SQL_DECREASE_COUNT_TOUR, tourId);
     }
 }

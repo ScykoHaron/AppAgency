@@ -40,7 +40,8 @@ public class OrdersController {
     }
 
     @PostMapping("/orders")
-    public String delOrder(@RequestParam(name = "order") BigInteger id, @RequestParam(name = "tour") BigInteger tourId, @RequestParam(name = "startdate") String startDate) {
+    public String delOrder(@RequestParam(name = "order") BigInteger id, @RequestParam(name = "tour") BigInteger tourId,
+                           @RequestParam(name = "startdate") String startDate) {
         LocalDate date = LocalDate.now();
         if (date.isEqual(LocalDate.parse(startDate)) || date.isAfter(LocalDate.parse(startDate))) {
             return "redirect:/orders?error";

@@ -6,9 +6,9 @@ import java.math.BigInteger;
 import java.util.List;
 
 public interface OrderService {
-    List<Order> getOrder(BigInteger id);
+    List<Order> getOrder(BigInteger userId);
 
-    void delOrder(BigInteger id);
+    void delOrder(BigInteger orderId);
 
     void addOrder(BigInteger userId, BigInteger tourId);
 }

@@ -25,7 +25,8 @@ public class EditController {
     }
 
     @PostMapping("/edit")
-    public String editFirstName(@RequestParam(name = "value") String value, @RequestParam(name = "field") String field, Authentication authentication) {
+    public String editFirstName(@RequestParam(name = "value") String value, @RequestParam(name = "field") String field,
+                                Authentication authentication) {
         if (authentication == null) {
             return "redirect:/start";
         }

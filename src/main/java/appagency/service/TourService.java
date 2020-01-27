@@ -8,7 +8,7 @@ import java.util.List;
 public interface TourService {
     List<Tour> getTours();
 
-    void increaseCount(BigInteger id);
+    void increaseCount(BigInteger tourId);
 
-    void decreaseCount(BigInteger id);
+    void decreaseCount(BigInteger tourId);
 }
