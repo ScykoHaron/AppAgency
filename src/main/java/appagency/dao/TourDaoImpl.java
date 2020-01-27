@@ -10,18 +10,18 @@ import java.math.BigInteger;
 import java.util.List;
 
 @Component
-public class TourDAOImpl implements TourDAO {
+public class TourDaoImpl implements TourDao {
 
     JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public TourDAOImpl(JdbcTemplate jdbcTemplate) {
+    public TourDaoImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    private final String SQL_GET_ALL_TOUR  = "select * from tours where count_limit > 0 and start_date > sysdate order by location";
-    private final String SQL_INCREASE_COUNT_TOUR  = "update tours set count_limit = count_limit + 1 where tour_id = ?";
-    private final String SQL_DECREASE_COUNT_TOUR  = "update tours set count_limit = count_limit - 1 where tour_id = ?";
+    private final String SQL_GET_ALL_TOUR = "select * from tours where count_limit > 0 and start_date > sysdate order by location";
+    private final String SQL_INCREASE_COUNT_TOUR = "update tours set count_limit = count_limit + 1 where tour_id = ?";
+    private final String SQL_DECREASE_COUNT_TOUR = "update tours set count_limit = count_limit - 1 where tour_id = ?";
 
     @Override
     public List<Tour> getTours() {
@@ -30,7 +30,7 @@ public class TourDAOImpl implements TourDAO {
 
     @Override
     public void increaseCount(BigInteger id) {
-        jdbcTemplate.update(SQL_INCREASE_COUNT_TOUR,id);
+        jdbcTemplate.update(SQL_INCREASE_COUNT_TOUR, id);
     }
 
     @Override

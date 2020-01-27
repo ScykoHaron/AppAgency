@@ -19,18 +19,18 @@ public class ProfileController {
     ProfileServiceImpl profileService;
 
     @GetMapping("/profile")
-    public String getProfilePage(ModelMap model, Authentication authentication){
-        if(authentication == null){
+    public String getProfilePage(ModelMap model, Authentication authentication) {
+        if (authentication == null) {
             return "redirect:/start";
         }
         UserDetailsImpl details = (UserDetailsImpl) authentication.getPrincipal();
         User user = details.getUser();
-        model.addAttribute("user",user);
+        model.addAttribute("user", user);
         return "profile";
     }
 
     @PostMapping("/profile")
-    public String deleteUser(Authentication authentication){
+    public String deleteUser(Authentication authentication) {
         UserDetailsImpl details = (UserDetailsImpl) authentication.getPrincipal();
         User user = details.getUser();
         profileService.deleteUser(user.getEmail());

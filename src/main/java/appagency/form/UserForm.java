@@ -1,7 +1,5 @@
 package appagency.form;
 
-import java.time.LocalDate;
-
 public class UserForm {
     private String firstName;
     private String lastName;

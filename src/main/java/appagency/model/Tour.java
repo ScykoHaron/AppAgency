@@ -12,7 +12,7 @@ public class Tour {
     private LocalDate endDate;
     private int countLimit;
 
-    public Tour(){
+    public Tour() {
 
     }
 

@@ -5,8 +5,10 @@ import appagency.model.Order;
 import java.math.BigInteger;
 import java.util.List;
 
-public interface OrderDAO {
+public interface OrderDao {
     List<Order> getOrders(BigInteger id);
+
     void deleteOrder(BigInteger id);
+
     void addOrder(BigInteger userId, BigInteger tourId);
 }

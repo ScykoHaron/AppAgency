@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class StartPageController {
     @GetMapping("/start")
-    public String getStartPage(ModelMap model, HttpServletRequest request){
-        if(request.getParameterMap().containsKey("error")){
-            model.addAttribute("error",true);
-       }
+    public String getStartPage(ModelMap model, HttpServletRequest request) {
+        if (request.getParameterMap().containsKey("error")) {
+            model.addAttribute("error", true);
+        }
         return "startpage";
     }
 }

@@ -9,41 +9,35 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @Import(JdbcConfig.class)
 @Sql("/data.sql")
-public class ProfileDAOImplTest {
+public class ProfileDaoImplTest {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    ProfileDAO profileDAO;
+    ProfileDao profileDao;
 
 
 
 
     @Before
     public void setUp(){
-        profileDAO = new ProfileDAOImpl(jdbcTemplate,new BCryptPasswordEncoder());
+        profileDao = new ProfileDaoImpl(jdbcTemplate,new BCryptPasswordEncoder());
     }
 
     @Test
     public void getUserByLogin() {
-        User user = profileDAO.getUserByLogin("VP@mail");
+        User user = profileDao.getUserByLogin("VP@mail");
         Assert.assertEquals("Vasya",user.getFirstName());
         Assert.assertEquals("Pupkin",user.getLastName());
         Assert.assertEquals("VP@mail",user.getEmail());
@@ -52,14 +46,14 @@ public class ProfileDAOImplTest {
         Assert.assertEquals(LocalDate.parse("1983-10-24"),user.getBirthday());
         Assert.assertEquals("ROLE_USER",user.getRole());
 
-        User user2 = profileDAO.getUserByLogin("VP2@mail");
+        User user2 = profileDao.getUserByLogin("VP2@mail");
         Assert.assertNull(user2);
     }
 
     @Test
     public void createUser() {
         UserForm userForm = new UserForm("S","SY","SS@mail","147","2020-10-15");
-        profileDAO.createUser(userForm);
+        profileDao.createUser(userForm);
         User user = jdbcTemplate.queryForObject("select * from users where email = 'SS@mail'", new UserMapper());
         Assert.assertEquals("S",user.getFirstName());
         Assert.assertEquals("SY",user.getLastName());
@@ -73,7 +67,7 @@ public class ProfileDAOImplTest {
     @Test
     public void updateUser() {
         UserForm userForm = new UserForm("S","SY","OL@mail","159","2020-10-15");
-        profileDAO.updateUser(userForm);
+        profileDao.updateUser(userForm);
         User user = jdbcTemplate.queryForObject("select * from users where email = 'OL@mail'", new UserMapper());
         Assert.assertEquals("S",user.getFirstName());
         Assert.assertEquals("SY",user.getLastName());
@@ -86,7 +80,7 @@ public class ProfileDAOImplTest {
 
     @Test
     public void deleteUser() {
-        profileDAO.deleteUser("VP@mail");
+        profileDao.deleteUser("VP@mail");
         User user = jdbcTemplate.queryForObject("select * from users where email = 'VP@mail'", new UserMapper());
         Assert.assertEquals("Vasya",user.getFirstName());
         Assert.assertEquals("Pupkin",user.getLastName());
@@ -99,10 +93,10 @@ public class ProfileDAOImplTest {
 
     @Test
     public void editUser() {
-        profileDAO.editUser("birthday","2020-10-20","VP@mail");
-        profileDAO.editUser("password","159","VP@mail");
-        profileDAO.editUser("first_name","S","VP@mail");
-        profileDAO.editUser("last_name","SY","VP@mail");
+        profileDao.editUser("birthday","2020-10-20","VP@mail");
+        profileDao.editUser("password","159","VP@mail");
+        profileDao.editUser("first_name","S","VP@mail");
+        profileDao.editUser("last_name","SY","VP@mail");
         User user = jdbcTemplate.queryForObject("select * from users where email = 'VP@mail'", new UserMapper());
         Assert.assertEquals("S",user.getFirstName());
         Assert.assertEquals("SY",user.getLastName());

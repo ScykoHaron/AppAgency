@@ -12,7 +12,7 @@ public class UserDetailsImpl implements UserDetails {
 
     private User user;
 
-    public UserDetailsImpl(User user){
+    public UserDetailsImpl(User user) {
         this.user = user;
     }
 
@@ -53,7 +53,7 @@ public class UserDetailsImpl implements UserDetails {
         return user.isActive();
     }
 
-    public User getUser(){
+    public User getUser() {
         return user;
     }
 }

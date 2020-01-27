@@ -1,6 +1,6 @@
 package appagency.service;
 
-import appagency.dao.TourDAOImpl;
+import appagency.dao.TourDao;
 import appagency.model.Tour;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,20 +12,20 @@ import java.util.List;
 public class TourServiceImpl implements TourService {
 
     @Autowired
-    TourDAOImpl tourDAO;
+    TourDao tourDao;
 
     @Override
     public List<Tour> getTours() {
-        return tourDAO.getTours();
+        return tourDao.getTours();
     }
 
     @Override
     public void increaseCount(BigInteger id) {
-        tourDAO.increaseCount(id);
+        tourDao.increaseCount(id);
     }
 
     @Override
     public void decreaseCount(BigInteger id) {
-        tourDAO.decreaseCount(id);
+        tourDao.decreaseCount(id);
     }
 }

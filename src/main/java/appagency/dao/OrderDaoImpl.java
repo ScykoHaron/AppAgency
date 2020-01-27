@@ -11,16 +11,16 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Component
-public class OrderDAOImpl implements OrderDAO {
+public class OrderDaoImpl implements OrderDao {
 
     JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public OrderDAOImpl(JdbcTemplate jdbcTemplate) {
+    public OrderDaoImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    private final String SQL_GET_USER_ORDER  = "SELECT q.order_id, w.tour_id, NAME ,DESCRIPTION ,LOCATION ,START_DATE ,END_DATE ,time_key FROM ORDERS q join tours w on q.tour_id = w.tour_id and q.user_id = ? order by order_id";
+    private final String SQL_GET_USER_ORDER = "SELECT q.order_id, w.tour_id, NAME ,DESCRIPTION ,LOCATION ,START_DATE ,END_DATE ,time_key FROM ORDERS q join tours w on q.tour_id = w.tour_id and q.user_id = ? order by order_id";
     private final String SQL_DELETE_ORDER = "delete from orders where order_id = ?";
     private final String SQL_ADD_ORDER = "insert into orders(user_id, tour_id, confirmed, time_key) values(?, ?, ?, ?)";
 
@@ -31,11 +31,11 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public void deleteOrder(BigInteger id) {
-        jdbcTemplate.update(SQL_DELETE_ORDER,id);
+        jdbcTemplate.update(SQL_DELETE_ORDER, id);
     }
 
     @Override
     public void addOrder(BigInteger userId, BigInteger tourId) {
-        jdbcTemplate.update(SQL_ADD_ORDER, userId,tourId, true, LocalDate.now());
+        jdbcTemplate.update(SQL_ADD_ORDER, userId, tourId, true, LocalDate.now());
     }
 }

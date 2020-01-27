@@ -13,7 +13,7 @@ public class Order {
     private LocalDate endDate;
     private LocalDate timeKey;
 
-    public Order(){
+    public Order() {
 
     }
 

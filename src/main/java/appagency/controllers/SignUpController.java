@@ -15,22 +15,20 @@ public class SignUpController {
     private SignUpServiceImpl signUpService;
 
     @GetMapping("/signup")
-    public String getSignUpPage(){
+    public String getSignUpPage() {
         return "signup";
     }
 
     @PostMapping("/signup")
     public String signUp(UserForm userForm, ModelMap model) {
-        if(signUpService.getUserByLogin(userForm.getEmail()) == null) {
+        if (signUpService.getUserByLogin(userForm.getEmail()) == null) {
             signUpService.addUser(userForm);
             return "redirect:/start";
-        }
-        else {
-            if(signUpService.getUserByLogin(userForm.getEmail()).isActive()) {
+        } else {
+            if (signUpService.getUserByLogin(userForm.getEmail()).isActive()) {
                 model.addAttribute("error", true);
                 return "signup";
-            }
-            else {
+            } else {
                 signUpService.updateUser(userForm);
                 return "redirect:/start";
             }

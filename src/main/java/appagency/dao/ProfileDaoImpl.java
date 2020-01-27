@@ -12,17 +12,16 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Component
-public class ProfileDAOImpl implements ProfileDAO {
+public class ProfileDaoImpl implements ProfileDao {
 
     JdbcTemplate jdbcTemplate;
     PasswordEncoder passwordEncoder;
 
     @Autowired
-    public ProfileDAOImpl(JdbcTemplate jdbcTemplate, PasswordEncoder passwordEncoder) {
+    public ProfileDaoImpl(JdbcTemplate jdbcTemplate, PasswordEncoder passwordEncoder) {
         this.jdbcTemplate = jdbcTemplate;
         this.passwordEncoder = passwordEncoder;
     }
-
 
 
     private final String SQL_FIND_USER = "select * from users where email = ?";
@@ -32,8 +31,8 @@ public class ProfileDAOImpl implements ProfileDAO {
 
     @Override
     public User getUserByLogin(String login) {
-        List<User> users = jdbcTemplate.query(SQL_FIND_USER, new Object[] {login}, new UserMapper());
-        if(users.isEmpty()){
+        List<User> users = jdbcTemplate.query(SQL_FIND_USER, new Object[]{login}, new UserMapper());
+        if (users.isEmpty()) {
             return null;
         }
         return users.get(0);
@@ -41,17 +40,17 @@ public class ProfileDAOImpl implements ProfileDAO {
 
     @Override
     public void createUser(UserForm userForm) {
-        jdbcTemplate.update(SQL_INSERT_USER, userForm.getFirstName(), userForm.getLastName(), userForm.getEmail(), passwordEncoder.encode(userForm.getPassword())  , true, LocalDate.parse(userForm.getBirthday()), "ROLE_USER");
+        jdbcTemplate.update(SQL_INSERT_USER, userForm.getFirstName(), userForm.getLastName(), userForm.getEmail(), passwordEncoder.encode(userForm.getPassword()), true, LocalDate.parse(userForm.getBirthday()), "ROLE_USER");
     }
 
     @Override
     public void updateUser(UserForm userForm) {
-        jdbcTemplate.update(SQL_UPDATE_USER,userForm.getFirstName(), userForm.getLastName(), userForm.getEmail(), passwordEncoder.encode(userForm.getPassword())  , true, LocalDate.parse(userForm.getBirthday()), "ROLE_USER",userForm.getEmail());
+        jdbcTemplate.update(SQL_UPDATE_USER, userForm.getFirstName(), userForm.getLastName(), userForm.getEmail(), passwordEncoder.encode(userForm.getPassword()), true, LocalDate.parse(userForm.getBirthday()), "ROLE_USER", userForm.getEmail());
     }
 
     @Override
     public void deleteUser(String login) {
-        jdbcTemplate.update(SQL_DELETE_USER,login);
+        jdbcTemplate.update(SQL_DELETE_USER, login);
     }
 
     @Override

@@ -24,20 +24,20 @@ public class ToursController {
     OrderServiceImpl orderService;
 
     @GetMapping("/tours")
-    public String getToursPage(ModelMap model){
-        model.addAttribute("allTours",tourService.getTours());
+    public String getToursPage(ModelMap model) {
+        model.addAttribute("allTours", tourService.getTours());
         return "tours";
     }
 
     @PostMapping("/tours")
-    public String bookingTour(@RequestParam(name = "tour") BigInteger tourId, Authentication authentication){
+    public String bookingTour(@RequestParam(name = "tour") BigInteger tourId, Authentication authentication) {
         if (authentication == null) {
             return "redirect:/start";
         }
         UserDetailsImpl details = (UserDetailsImpl) authentication.getPrincipal();
         User user = details.getUser();
         tourService.decreaseCount(tourId);
-        orderService.addOrder(user.getUserId(),tourId);
+        orderService.addOrder(user.getUserId(), tourId);
         return "redirect:/tours";
     }
 }

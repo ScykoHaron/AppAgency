@@ -31,14 +31,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.headers().frameOptions().disable();
         http.authorizeRequests()
-                .antMatchers("/profile","/edit").hasAuthority("ROLE_USER")
-                .antMatchers("/start","/signup","/tours").permitAll();
+                .antMatchers("/profile", "/edit").hasAuthority("ROLE_USER")
+                .antMatchers("/start", "/signup", "/tours").permitAll();
         http.authorizeRequests().and().formLogin()
                 .usernameParameter("login")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/profile")
                 .loginPage("/start")
-        .and()
-        .exceptionHandling().accessDeniedPage("/accessDenied");
+                .and()
+                .exceptionHandling().accessDeniedPage("/accessDenied");
     }
 }
